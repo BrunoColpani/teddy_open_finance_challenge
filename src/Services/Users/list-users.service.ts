@@ -1,5 +1,6 @@
 import { ConflictException, Inject, Injectable } from '@nestjs/common';
 import { UsersModel } from 'src/Entities/Users/user.entity';
+import { comparePassword } from 'src/utils/password.utils';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -48,5 +49,26 @@ export class ListUsersService {
         'There is already a registered user with this email.',
       );
     }
+  }
+
+  /**
+   * Validates a user's credentials.
+   *
+   * @param {string} email - The email of the user to be validated.
+   * @param {string} password - The password of the user to be validated.
+   *
+   * @returns {Promise<UsersModel|undefined>} - A promise that resolves to the user if validation succeeds, or undefined otherwise.
+   */
+  async validateUser(
+    email: string,
+    password: string,
+  ): Promise<UsersModel | undefined> {
+    const user = await this._listUsersServiceRepository.findOne({
+      where: { email },
+    });
+    if (user && comparePassword(password, user.password)) {
+      return { ...user, password: undefined };
+    }
+    return undefined;
   }
 }

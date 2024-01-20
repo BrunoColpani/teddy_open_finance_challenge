@@ -15,5 +15,6 @@ import { UpdateUsersService } from './update-users.service';
     UpdateUsersService,
     ...usersProviders,
   ],
+  exports: [ListUsersService],
 })
 export class UsersModule {}
