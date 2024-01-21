@@ -81,7 +81,7 @@ $ yarn start:docker -- build
 <p align="center">
   <a href="https://github.com/BrunoColpani/teddy_open_finance_challenge/blob/main/collection/Teddy.postman_collection.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 </p>
-
+Manual and automated tests on collection, environment variables in the same folder.
 ---
 
 ## 🛠 Technologies
