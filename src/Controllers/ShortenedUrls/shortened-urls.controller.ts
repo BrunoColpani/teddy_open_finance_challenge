@@ -101,11 +101,10 @@ export class ShortenedUrlsController {
     @Body() createShortenedUrlsDto: CreateShortenedUrlsDto,
     @Request() req,
   ) {
-    const shortUrl = await this._createShortenedUrlsService.create(
+    return await this._createShortenedUrlsService.create(
       createShortenedUrlsDto,
       req.userId,
     );
-    return { shortUrl };
   }
 
   @UseGuards(JwtAuthGuard)

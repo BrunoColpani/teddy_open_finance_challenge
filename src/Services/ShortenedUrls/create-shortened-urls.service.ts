@@ -45,9 +45,12 @@ export class CreateShortenedUrlsService {
       shortUrl: hash,
       userId,
     });
-    await this._createShortenedUrlsRepository.save(newUrl);
+    const ShortenedUrl = await this._createShortenedUrlsRepository.save(newUrl);
 
-    return shortUrl;
+    return {
+      shortUrl: shortUrl,
+      id: ShortenedUrl.id,
+    };
   }
 
   /**
