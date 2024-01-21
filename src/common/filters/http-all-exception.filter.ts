@@ -10,9 +10,19 @@ import { Request, Response } from 'express';
 
 @Catch(HttpException)
 export class HttpAllExceptionFilter implements ExceptionFilter {
+  /**
+   * @description Creates an instance of the HttpAllExceptionFilter.
+   * @param {Logger} logger - An optional logger instance.
+   */
   constructor(
     private readonly logger = new Logger(HttpAllExceptionFilter.name),
   ) {}
+
+  /**
+   * @description Handles HTTP exceptions, logs error details, and sends a standardized response.
+   * @param {HttpException} exception - The caught exception.
+   * @param {ArgumentsHost} host - The host containing request and response objects.
+   */
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
