@@ -4,11 +4,15 @@ import {
   ExceptionFilter,
   HttpException,
   HttpStatus,
+  Logger,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 
 @Catch(HttpException)
 export class HttpAllExceptionFilter implements ExceptionFilter {
+  constructor(
+    private readonly logger = new Logger(HttpAllExceptionFilter.name),
+  ) {}
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
@@ -21,6 +25,10 @@ export class HttpAllExceptionFilter implements ExceptionFilter {
 
     const message =
       exception instanceof HttpException ? exception.getResponse() : exception;
+
+    this.logger.error(
+      `Http Status: ${status} Error Message: ${JSON.stringify(message)}`,
+    );
 
     response.status(status).json({
       path: request.url,
