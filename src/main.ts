@@ -1,11 +1,22 @@
 import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  Logger,
+  ValidationPipe,
+} from '@nestjs/common';
 import { ModelNotFoundException } from './common/filters/model-not-found.exception.filter';
 import { HttpAllExceptionFilter } from './common/filters/http-all-exception.filter';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
+  const logger = new Logger('Main');
   const app = await NestFactory.create(AppModule);
+
+  const config = app.get<ConfigService>(ConfigService);
+  const port = config.get<number>('APP_PORT');
+  const appUrl = config.get<string>('API_DOMAIN');
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -23,6 +34,9 @@ async function bootstrap() {
     allowedHeaders: '*',
     exposedHeaders: '*',
   });
-  await app.listen(process.env.APP_PORT || 8080);
+
+  await app.listen(port, () =>
+    logger.log(`[WEB] Server running at ${appUrl}:${port}`),
+  );
 }
 bootstrap();
