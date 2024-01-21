@@ -9,6 +9,14 @@ export class UpdatetShortenedUrlsService {
     @Inject('SHORTENEDURLS_REPOSITORY')
     private readonly _updateShortenedUrlsRepository: Repository<ShortenedUrlsModel>,
   ) {}
+
+  /**
+   * @description Update a shortened URL by its ID and user ID.
+   * @param {number} id - The ID of the shortened URL.
+   * @param {UpdateShortenedUrlsDto} updateShortenedUrlsDto - DTO containing details for updating a shortened URL.
+   * @param {number} userId - The ID of the user.
+   * @returns {Promise<ShortenedUrlsModel>} - The updated shortened URL details.
+   */
   async update(
     id: number,
     updateShortenedUrlsDto: UpdateShortenedUrlsDto,

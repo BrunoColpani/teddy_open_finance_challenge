@@ -11,6 +11,13 @@ export class CreateShortenedUrlsService {
     private readonly _createShortenedUrlsRepository: Repository<ShortenedUrlsModel>,
     private readonly _listShortenedUrlsService: ListShortenedUrlsService,
   ) {}
+
+  /**
+   * @description Create a new shortened URL.
+   * @param {CreateShortenedUrlsDto} createShortenedUrlsDto - DTO containing details for creating a shortened URL.
+   * @param {number} userId - The ID of the user.
+   * @returns {Promise<string>} - The shortened URL.
+   */
   async create(createShortenedUrlsDto: CreateShortenedUrlsDto, userId: number) {
     const existingUrl = await this._listShortenedUrlsService.findByOriginalUrl(
       createShortenedUrlsDto.originalUrl,
@@ -34,6 +41,11 @@ export class CreateShortenedUrlsService {
     return shortUrl;
   }
 
+  /**
+   * @description Generate a random hash of a specified length.
+   * @param {number} length - The length of the hash.
+   * @returns {string} - The generated hash.
+   */
   generateRandomHash(length: number): string {
     const characters =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

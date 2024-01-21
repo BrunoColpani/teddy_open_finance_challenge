@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
 import { Repository } from 'typeorm';
 import { ShortenedUrlsModel } from 'src/Entities/ShortenedUrls/shortened-urls.entity';
@@ -10,8 +10,13 @@ export class AddClickShortenedUrlsService {
     private readonly _addClickCountShortenedUrlsRepository: Repository<ShortenedUrlsModel>,
   ) {}
 
+  /**
+   * @description Increment the click count for a shortened URL.
+   * @param {number} shortenedUrlId - The ID of the shortened URL.
+   * @returns {Promise<ShortenedUrlsModel>} - The updated shortened URL details.
+   */
   async addClickCount(shortenedUrlId: number) {
-    const url = await this._addClickCountShortenedUrlsRepository.findOne({
+    const url = await this._addClickCountShortenedUrlsRepository.findOneOrFail({
       where: { id: shortenedUrlId },
     });
 
@@ -19,8 +24,6 @@ export class AddClickShortenedUrlsService {
       url.clickCount += 1;
       await this._addClickCountShortenedUrlsRepository.save(url);
       return url;
-    } else {
-      throw new NotFoundException('Shortened URL not found');
     }
   }
 }

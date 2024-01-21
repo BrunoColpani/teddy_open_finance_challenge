@@ -8,6 +8,12 @@ export class DeleteShortenedUrlsService {
     @Inject('SHORTENEDURLS_REPOSITORY')
     private readonly _deleteShortenedUrlsRepository: Repository<ShortenedUrlsModel>,
   ) {}
+
+  /**
+   * @description Remove a shortened URL by its ID and user ID.
+   * @param {number} id - The ID of the shortened URL.
+   * @param {number} userId - The ID of the user.
+   */
   async remove(id: number, userId: number) {
     const url = await this._deleteShortenedUrlsRepository.findOneOrFail({
       where: { active: true, id, userId },
