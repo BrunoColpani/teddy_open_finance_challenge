@@ -18,13 +18,22 @@ export class CreateShortenedUrlsService {
    * @param {number} userId - The ID of the user.
    * @returns {Promise<string>} - The shortened URL.
    */
-  async create(createShortenedUrlsDto: CreateShortenedUrlsDto, userId: number) {
-    const existingUrl = await this._listShortenedUrlsService.findByOriginalUrl(
-      createShortenedUrlsDto.originalUrl,
-    );
+  async create(
+    createShortenedUrlsDto: CreateShortenedUrlsDto,
+    userId: number | null,
+  ) {
+    const existingUrlExists =
+      userId !== null
+        ? await this.checkIfShortenedUrlExistsForUser(
+            createShortenedUrlsDto.originalUrl,
+            userId,
+          )
+        : await this.checkIfShortenedUrlExistsForOriginalUrl(
+            createShortenedUrlsDto.originalUrl,
+          );
 
-    if (existingUrl) {
-      return `${process.env.API_DOMAIN}:${process.env.APP_PORT}/${existingUrl.shortUrl}`;
+    if (existingUrlExists) {
+      return `${process.env.API_DOMAIN}:${process.env.APP_PORT}/${existingUrlExists.shortUrl}`;
     }
 
     const hash = this.generateRandomHash(6);
@@ -39,6 +48,37 @@ export class CreateShortenedUrlsService {
     await this._createShortenedUrlsRepository.save(newUrl);
 
     return shortUrl;
+  }
+
+  /**
+   * @description Checks if a shortened URL exists for a given original URL.
+   * @param {string} originalUrl - The original URL to check.
+   * @returns {Promise<ShortenedUrlsModel>} - The details of the existing shortened URL, if found.
+   */
+  async checkIfShortenedUrlExistsForOriginalUrl(
+    originalUrl: string,
+  ): Promise<ShortenedUrlsModel> {
+    const existingUrl =
+      await this._listShortenedUrlsService.findByOriginalUrl(originalUrl);
+    return existingUrl;
+  }
+
+  /**
+   * @description Checks if a shortened URL exists for a given original URL and user ID.
+   * @param {string} originalUrl - The original URL to check.
+   * @param {number} userId - The ID of the user.
+   * @returns {Promise<ShortenedUrlsModel>} - The details of the existing shortened URL, if found.
+   */
+  async checkIfShortenedUrlExistsForUser(
+    originalUrl: string,
+    userId: number,
+  ): Promise<ShortenedUrlsModel> {
+    const existingUrl =
+      await this._listShortenedUrlsService.findByOriginalUrlAndUserId(
+        originalUrl,
+        userId,
+      );
+    return existingUrl;
   }
 
   /**
