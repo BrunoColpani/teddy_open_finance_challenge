@@ -13,7 +13,7 @@ import { UsersModel } from '../Users/user.entity';
 
 @Index('shortened_urls_pkey', ['id'], { unique: true })
 @Index('shortened_urls_short_url_key', ['shortUrl'], { unique: true })
-@Entity('shortened_urls', { schema: 'teddy' })
+@Entity('shortened_urls', { schema: process.env.DATABASE_SCHEMA })
 export class ShortenedUrlsModel {
   @PrimaryGeneratedColumn({ type: 'integer', name: 'id' })
   id: number;
