@@ -43,7 +43,6 @@ export class ShortenedUrlsController {
     return await this._listShortenedUrlsService.findByUserId(userId);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Post('')
   async shortenUrl(
     @Body() createShortenedUrlsDto: CreateShortenedUrlsDto,
@@ -51,7 +50,7 @@ export class ShortenedUrlsController {
   ) {
     const shortUrl = await this._createShortenedUrlsService.create(
       createShortenedUrlsDto,
-      req.user.userId,
+      req.userId,
     );
     return { shortUrl };
   }

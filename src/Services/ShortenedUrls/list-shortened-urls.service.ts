@@ -56,6 +56,18 @@ export class ListShortenedUrlsService {
   }
 
   /**
+   * @description Find a shortened URL by its original URL and userId.
+   * @param {string} originalUrl - The original URL.
+   * @param {number} userId - The user id.
+   * @returns {Promise<ShortenedUrlsModel | undefined>} - The shortened URL details.
+   */
+  async findByOriginalUrlAndUserId(originalUrl: string, userId: number) {
+    return await this._listShortenedUrlsRepository.findOne({
+      where: { originalUrl, userId },
+    });
+  }
+
+  /**
    * @description Redirect to the original URL and update click count.
    * @param {string} shortUrl - The shortened URL.
    * @returns {Promise<string>} - The original URL.
