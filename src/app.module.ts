@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { UsersModule } from './Services/Users/users.module';
 import { AuthModule } from './Services/Auth/auth.module';
+import { ShortenedUrlsModule } from './Services/ShortenedUrls/shortened-urls.provider.module';
 
 @Module({
   imports: [
@@ -15,8 +14,7 @@ import { AuthModule } from './Services/Auth/auth.module';
     }),
     UsersModule,
     AuthModule,
+    ShortenedUrlsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
