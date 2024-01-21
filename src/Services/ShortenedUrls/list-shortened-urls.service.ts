@@ -37,7 +37,10 @@ export class ListShortenedUrlsService {
       select: ['id', 'shortUrl', 'originalUrl', 'clickCount', 'updatedAt'],
     });
 
-    urls.map((i) => (i.shortUrl = `${process.env.API_DOMAIN}/${i.shortUrl}`));
+    urls.map(
+      (i) =>
+        (i.shortUrl = `${process.env.API_DOMAIN}:${process.env.APP_PORT}/${i.shortUrl}`),
+    );
     return urls;
   }
 

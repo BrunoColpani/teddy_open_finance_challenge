@@ -24,12 +24,12 @@ export class CreateShortenedUrlsService {
     );
 
     if (existingUrl) {
-      return `${process.env.API_DOMAIN}/shorten/${existingUrl.shortUrl}`;
+      return `${process.env.API_DOMAIN}:${process.env.APP_PORT}/${existingUrl.shortUrl}`;
     }
 
     const hash = this.generateRandomHash(6);
 
-    const shortUrl = `${process.env.API_DOMAIN}/shorten/${hash}`;
+    const shortUrl = `${process.env.API_DOMAIN}:${process.env.APP_PORT}/${hash}`;
 
     const newUrl = this._createShortenedUrlsRepository.create({
       originalUrl: createShortenedUrlsDto.originalUrl,
