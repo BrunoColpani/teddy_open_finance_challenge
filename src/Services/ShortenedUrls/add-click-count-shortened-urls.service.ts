@@ -20,10 +20,7 @@ export class AddClickShortenedUrlsService {
       where: { id: shortenedUrlId },
     });
 
-    if (url) {
-      url.clickCount += 1;
-      await this._addClickCountShortenedUrlsRepository.save(url);
-      return url;
-    }
+    url.clickCount += 1;
+    await this._addClickCountShortenedUrlsRepository.save(url);
   }
 }

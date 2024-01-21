@@ -12,21 +12,6 @@ export class ListShortenedUrlsService {
   ) {}
 
   /**
-   * @description Find a shortened URL by its ID.
-   * @param {number} id - The ID of the shortened URL.
-   * @returns {Promise<ShortenedUrlsModel | undefined>} - The shortened URL details.
-   */
-  async findById(id: number) {
-    try {
-      return await this._listShortenedUrlsRepository.findOneOrFail({
-        where: { id },
-      });
-    } catch (error) {
-      return error.response;
-    }
-  }
-
-  /**
    * @description Find shortened URLs by user ID.
    * @param {number} userId - The ID of the user.
    * @returns {Promise<ShortenedUrlsModel[]>} - List of shortened URLs for the user.
@@ -70,14 +55,15 @@ export class ListShortenedUrlsService {
   /**
    * @description Redirect to the original URL and update click count.
    * @param {string} shortUrl - The shortened URL.
-   * @returns {Promise<string>} - The original URL.
+   * @returns {Promise<{ url: string }>} - The original URL.
    */
-  async redirect(shortUrl: string): Promise<string> {
+  async redirect(shortUrl: string): Promise<{ url: string }> {
     const url = await this._listShortenedUrlsRepository.findOneOrFail({
       where: { shortUrl },
     });
 
     await this._addClickShortenedUrlsService.addClickCount(url.id);
-    return url.originalUrl;
+
+    return { url: url.originalUrl };
   }
 }
