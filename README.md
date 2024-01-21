@@ -1,73 +1,120 @@
+<h4 align="center"> 
+	🚧  Challenge Teddy Open Finance 😺 Finished 🚀 🚧
+</h4>
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+ <a href="#-about-the-project">About</a> •
+ <a href="#-features">Features</a> •
+ <a href="#-how-to-run-the-project">How to Run</a> • 
+ <a href="#-technologies">Technologies</a> • 
+ <a href="#-author">Author</a> • 
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 💻 About the project
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+😺 The Teddy Open Finance Challenge is a backend application that provides a URL shortening service. The service accepts a URL as input and returns a shortened URL as output. The shortened URL is a sequence of alphanumeric characters that is easy to remember and share.
 
-## Description
+The service works as follows:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+The user sends a URL to the service.
+The service generates a random shortened URL.
+The service stores the shortened URL and the original URL in a database.
+The service returns the shortened URL to the user.
+The service is implemented using the NestJS platform. NestJS is a back-end application development framework for Node.js. NestJS is used to create robust, scalable, and secure applications.
 
-## Installation
+The service is scaled to handle a large number of requests. The service uses a cluster of servers to distribute the workload. The service also uses a cache to store the most recently shortened URLs.
+
+The service is secure. The service uses HTTPS to protect communications between the client and the server. The service also uses authentication and authorization to protect access to data.
+
+---
+
+## ⚙️ Features
+- [x] User registration:
+
+{
+  "email": "teste@email.com",
+  "password": "abcde123"
+}
+
+- [x] User registration:
+  - [x]  email, and password.
+
+- [x] Listing and registration of URLs:
+  - [x] originalUrl, shortUrl e clickCount.
+
+---
+
+## 🚀 How to Run the Project
+
+### Prerequisites
+
+Before you start, you will need to have the following tools installed on your machine: [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). It is also recommended to have an editor to work with the code, such as [VSCode](https://code.visualstudio.com/).
+
+### Environment variables
+```bash
+APP_PORT=
+DATABASE_HOST=
+DATABASE_PORT=
+DATABASE_NAME=
+DATABASE_USER=
+DATABASE_PASSWORD=
+JWT_SECRET=
+API_DOMAIN=http://localhost
+```
+
+#### 🎲 Running the API (server)
 
 ```bash
+
+# Clone this repository
+$ git clone git@github.com:BrunoColpani/teddy_open_finance_challenge.git
+
+# Install the dependencies
 $ yarn install
+
+# Run the application in development mode
+$ yarn start:docker -- build
+
+# The server will start on port 3005 - access http://localhost:3005
+
 ```
+<p align="center">
+  <a href="https://github.com/BrunoColpani/challenge-kuanto-kusta/blob/main/collection/challenge_kuanto_kusta.postman_collection.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+</p>
 
-## Running the app
+---
 
-```bash
-# development
-$ yarn run start
+## 🛠 Technologies
 
-# watch mode
-$ yarn run start:dev
+The following tools were used in the construction of the project:
 
-# production mode
-$ yarn run start:prod
-```
 
-## Test
+#### [](https://github.com/tgmarinho/Ecoleta#server-nodejs--typescript)**Server** ([NodeJS](https://nodejs.org/en/))
 
-```bash
-# unit tests
-$ yarn run test
+- **[Nestjs](http://knexjs.org/)**
+- **[Class-tranformer](https://www.npmjs.com/package/class-transformer)**
+- **[Class-validator](https://www.npmjs.com/package/class-validator)**
+- **[Passport](https://www.passportjs.org/packages/passport-jwt/)**
+- **[jsonwebtoken](https://jwt.io/)**
+- **[TypeORM](https://typeorm.io)**
+- **[PostgreSQL](https://www.postgresql.org)**
+- **[Docker](https://www.docker.com)**
 
-# e2e tests
-$ yarn run test:e2e
+---
 
-# test coverage
-$ yarn run test:cov
-```
+## 🦸 Autor
 
-## Support
+<a href="https://www.linkedin.com/in/bruno-colpani-0b1152138/">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/87588227?v=4" width="100px;" alt=""/>
+ <br />
+ <sub><b>Bruno Colpani</b></sub></a> 
+ <br />
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+[![Linkedin Badge](https://img.shields.io/badge/-Bruno-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/bruno-colpani-0b1152138/)](https://www.linkedin.com/in/bruno-colpani-0b1152138/)
+[![Gmail Badge](https://img.shields.io/badge/-bruno.colpani1@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:bruno.colpani1@gmail.com)](mailto:bruno.colpani1@gmail.com)
 
-## Stay in touch
+---
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## README Versions
 
-## License
-
-Nest is [MIT licensed](LICENSE).
+[Portuguese (pt-br)](./README-PT.md)
