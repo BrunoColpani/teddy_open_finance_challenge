@@ -20,6 +20,7 @@ export class DeleteShortenedUrlsService {
     });
 
     url.deletedAt = new Date();
+    url.active = false;
     await this._deleteShortenedUrlsRepository.save(url);
   }
 }
