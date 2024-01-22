@@ -51,6 +51,7 @@ O serviço é seguro. O serviço usa HTTPS para proteger as comunicações entre
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas: [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). Além disso, é bom ter um editor para trabalhar com o código como o [VSCode](https://code.visualstudio.com/).
+O node utilizado no projeto é a versao 20.10.0
 
 ### Variáveis ​​ambientais
 ```bash
@@ -104,6 +105,15 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[TypeORM](https://typeorm.io)**
 - **[PostgreSQL](https://www.postgresql.org)**
 - **[Docker](https://www.docker.com)**
+
+---
+## 💡 Pontos de melhoria
+
+- Fazer deploy do projeto em um cloud;
+- CI de Lint e Testes Automatizados;
+- Quebrar o projeto em servicos;
+- Criar testes manuais;
+- Logging e Monitoramento (Datadog);
 
 ---
 

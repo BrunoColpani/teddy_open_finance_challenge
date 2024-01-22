@@ -102,6 +102,16 @@ The following tools were used in the construction of the project:
 
 ---
 
+## 💡 Points for improvement
+
+- Deploy the project on a cloud;
+- Lint CI and Automated Tests;
+- Break the project into services;
+- Create manual tests;
+- Logging and Monitoring (Datadog);
+
+---
+
 ## 🦸 Autor
 
 <a href="https://www.linkedin.com/in/bruno-colpani-0b1152138/">
