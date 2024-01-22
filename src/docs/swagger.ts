@@ -5,7 +5,7 @@ export const swagger = (app: NestExpressApplication): void => {
   const config = new DocumentBuilder()
     .setTitle('Rest API Shortened Urls')
     .setDescription('Example Rest API Shortened Urls')
-    .setVersion('1.0')
+    .setVersion('1.0.0')
     .addSecurity('Token', {
       type: 'http',
       scheme: 'bearer',
